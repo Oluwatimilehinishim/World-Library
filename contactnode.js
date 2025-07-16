@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const port = 3000;
+const port = process.env.PORT;
 
 const defaultHTML = fs.readFileSync('home.html', 'utf-8');
 const contactusHTML = fs.readFileSync('contact.html', 'utf-8');
@@ -133,6 +133,6 @@ function handlePostData(req, callback) {
 		}
 });
 
-server.listen(port, 'localhost', () => {
-  console.log(`A request was sent.`);
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
