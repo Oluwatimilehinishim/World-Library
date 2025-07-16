@@ -1,0 +1,14 @@
+{
+  "name": "cosc-209-project",
+  "version": "1.0.0",
+  "main": "contactnode.js",
+  "scripts": {
+    "start": "node contactnode.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
