@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Contact us</title>
+
+	  <style>
+		*{
+			margin: 0;
+			box-sizing: border-box;
+			padding: 0;
+		}
+	
+		body{
+			background: linear-gradient(to right, pink, rgb(87, 51, 51));
+		}
+		
+		label{
+			font-size: 1em;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		form{
+			margin-top: 7%;
+			height: 500px;
+			display: flex;
+			flex-direction: column;
+		}
+	
+		.whole{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	
+		input{
+			background: none;
+			border: none;
+			border-bottom: 1px solid black;
+			width: 300px;
+			outline: none;
+			transition: margin-top 0.5s ease;
+		}
+
+		input:hover{
+			border-bottom: 2px solid black;
+		}
+
+		input:focus{
+			border-bottom: 2px solid black;
+			margin-top: 25px;
+		}
+
+		input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		.name{
+			display: flex;
+			gap: 40px;
+			flex-direction: column;
+			height: 300px;
+			width: 900px;
+			margin-top: 50px;
+		}
+
+		.namess{
+			display: flex;
+			flex-direction: row;
+		}
+
+		h1{
+			font-size: 2em;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		button
+		{
+			padding: 1em 0.5em;
+			border-radius: 10px;
+			background-color: rgb(230, 217, 217);
+			color: white;
+			width: 20%;
+			border: 1px solid black;
+			cursor: not-allowed;
+			transition: background-color 0.25s;
+		}
+
+		button.active{
+			background: rgb(131, 101, 101);
+			cursor: pointer;
+		}
+
+		button.active:hover{
+			background: linear-gradient(to left, rgb(129, 81, 81), rgb(2, 20, 43));
+		}
+
+		button.active:active{
+			background: rgb(153, 148, 148);
+		}
+
+		.myButton{
+			display: flex;
+			justify-content: center;
+		}
+
+		.fname{
+			display: flex;
+			flex-direction: column;
+			margin-left: 20%;
+		}
+
+		.Sname{
+			display: flex;
+			flex-direction: column;
+		}
+
+		.info{
+			display: flex;
+			flex-direction: row;
+		}
+
+		.email{
+			display: flex;
+			flex-direction: column;
+		}
+
+		.pNumber{
+			display: flex;
+			flex-direction: column;
+			margin-left: 20%;
+		}
+
+		.complaint{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		.complaint input{
+			margin-right: 10%;
+			width: 700px;
+		}
+
+		.complaint input:focus{
+			margin-top: 55px;
+		}
+
+		#errorMsg{
+			text-align: right;
+			color: black;
+			font-size: 0.8em;
+			margin-right: 13%;
+		}
+
+		@media only screen and (max-width: 1170px){
+			.whole{
+				margin-left: 270px;
+			}
+
+			input{
+				width: 220px;
+			}
+
+			input:focus{
+				margin-top: 22px;
+			}
+
+			.complaint input{
+				width: 500px;
+				margin-left: 65px;
+			}
+
+			.complaint input:focus{
+				margin-top: 30px;
+			}
+
+			.complaint{
+				margin-right: 250px;
+			}
+
+			h1{
+				margin-right: 170px;
+				font-size: 1.3em;
+				width: 400px;
+			}
+
+			button{
+				margin-left: 40%;
+				padding: 1em 7em;
+			}
+
+			.myButton{
+				width: 50%;
+			}
+
+			.errorMsg{
+				margin-left: 190px;
+				width: 250px;
+			}
+		}
+
+		@media only screen and (max-width: 900px){
+			.whole{
+				margin-right: 200px;
+			}
+
+			h1{
+				width: 500px;
+				margin-left: 220px;
+				font-size: 1.7em;
+			}
+
+			.namess{
+				display: flex;
+				flex-direction: column;
+				gap: 40px;
+				margin-left: 250px;
+				width: 450px;
+				height: 190px;
+				margin-top: 0;
+			}
+
+			.Sname{
+				margin-left: 57px;
+			}
+
+			.fname{
+				margin-left: 57px;
+			}
+
+			.info{
+				display: flex;
+				flex-direction: column;
+				margin-left: 250px;
+				width: 450px;
+				gap: 40px;
+			}
+
+			.email{
+				margin-left: 57px;
+			}
+
+			.pNumber{
+				margin-left: 57px;
+			}
+
+			input{
+				width: 250px;
+			}
+
+			.complaint{
+				margin-left: 252px;
+				width: 200px;
+			}
+
+			.complaint input{
+				margin-left: 189px;
+				width: 259px;
+			}
+
+			.complaint input:focus{
+				margin-top: 30px;
+			}
+
+			.myButton{
+				margin-left: 125px;
+				margin-top: 35px;
+			}
+			
+			button{
+				padding: 1em 9.6em;
+				border-radius: 5px;
+			}
+
+			.errorMsg{
+				margin-top: 80px;
+				margin-left: 305px;
+				width: 250px;
+			}
+
+		}
+
+	</style>	
+</head>
+
+<body>
+    <form action="/submit-contact" id="whole" class="whole" method="POST">
+        <h1>Fill this to lodge your complaint</h1>
+		<div class="omo">
+			<div class="name">
+				<div class="namess">
+					<div class="Sname">
+						<label for="Ssname">Surname</label>
+						<input type="text" id="ssname" name="ssname">
+					</div>
+
+					<div class="fname">
+						<label for="ffname">Firstname</label>
+						<input type="text" id="ffname" name="ffname">
+					</div>
+				</div>
+
+
+				<div class="info">
+					<div class="email">
+						<label for="emaill">Email</label>
+						<input type="text" id="emaill" name="emaill">
+					</div>
+
+					<div class="pNumber">
+						<label for="pNumberr">Phone number</label>
+						<input type="number" id="pNumberr" name="pNumberr">
+					</div>
+				</div>
+
+				<div class="complaint">
+					<label for="complaint">Complaint</label>
+					<input type="text" id="complaint" name="complaint">
+				</div>
+			</div>
+
+			<div class="errorMsg">
+				<p id="errorMsg"></p>
+			</div>
+			<div class="myButton">
+				<button id="myButton" type="submit">Submit</button>
+			</div>
+    </form>
+
+	<script>
+		const myInput = document.getElementById('complaint');
+		const myButton = document.getElementById('myButton');
+
+	myInput.addEventListener('input', function(){
+		if(myInput.value.trim() !== ""){
+			myButton.classList.add("active");
+		}
+		else{
+			myButton.classList.remove("active");  
+		}
+	});
+
+	myButton.onclick = function compare() {
+		const ffname = document.getElementById("ffname");
+		const ssname = document.getElementById("ssname");
+		const pNumberr = document.getElementById("pNumberr");
+		const email = document.getElementById("emaill");
+		const errorMsg = document.getElementById("errorMsg");
+
+    if(ffname.value.trim() !=="" && ssname.value.trim() !== "" && pNumberr.value.trim() !== "" && email.value.trim() !== "" && myInput.value.trim() !== ""){
+        errorMsg.textContent = "";
+    }
+    else{
+        document.getElementById("whole").addEventListener('submit', (event) => {
+            event.preventDefault();
+        });
+        errorMsg.textContent = "Please fill in ALL the reqired field!";
+    }
+}
+	</script>
+</body>
+</html>

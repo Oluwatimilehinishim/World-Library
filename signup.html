@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="signup.css" />
+    <title>Sign up</title>
+
+    <style>
+      *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+    body, html{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body{
+        background-image: url(./images/world\ library.jpeg);
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 10em 30em;
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .signup{
+        border-radius: 17px;
+        padding: 1em 3em;
+    }
+
+    h1{
+        text-align: center;
+    }
+
+    .myButton{
+        color: white;
+        background-color: rgb(79, 99, 124);
+        padding: 1em 3em;
+        border-radius: 30px;
+        transition: background-color 0.25s;
+    }
+
+    .myButton:hover{
+        background-color: rgb(13, 34, 70);
+    }
+
+    @media only screen and (max-width: 350px) {
+        body, html{
+            display: grid;
+            place-items: center;
+        }
+    }
+
+    @media only screen and (max-width: 415px) {
+        body, html{
+            display: flex;
+            align-items: center;
+        }
+
+        body{
+            background-size: 50%;
+        }
+
+        
+    }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+        <h1>WORLD LIBRARY</h1>
+    </nav>
+
+    <div id="infoPage">
+      <form action="" id="myForm">
+        <div class="errorInfo">
+            <input
+              type="text"
+              placeholder="Username"
+              id="name"
+              class="signup"
+              min="5"
+            />
+            <p id="errorName"></p><br /><br />
+            <input
+              type="text"
+              placeholder="email address(optional)"
+              id="email"
+              class="signup"
+            />
+            <p id="emailerror"></p><br /><br/>
+            <input
+              placeholder="Phone number"
+              id="phone"
+              class="signup">
+            <p id="pNumber"></p><br /><br />
+
+            <input
+              type="text"
+              placeholder="Password"
+              id="pWord"
+              class="signup"
+            />
+            <p id="enterpword"></p><br /><br />
+            <input
+              type="text"
+              placeholder="Confirm password"
+              id="cpWord"
+              class="signup"
+            />
+            <p id="entercpword"></p><br /><br />
+          </div>
+          <p id="alert"></p>
+    </div>
+
+        <button id="mySign" class="myButton" type="submit">Create account</button>
+    </form>
+      
+    <script>
+      myButton.onclick = function(){
+      myButton = document.getElementById("mySign");
+      const pWord = document.getElementById("pWord").value;
+      const cpWord = document.getElementById("cpWord").value;
+      const username = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const errorName = document.getElementById("errorName");
+      const enterpword = document.getElementById("enterpword");
+      const entercpword = document.getElementById("entercpword");
+      const pAlert = document.getElementById("alert");
+      const pNumber = document.getElementById("pNumber");
+      const emailerror = document.getElementById("emailerror");
+      const lastFour = email.slice(-4);
+      const extension = email.slice(email.indexof("@"));
+
+      document.getElementById("myForm").addEventListener('click', (event) => {
+        event.preventDefault();
+        if(username == ""){
+          errorName.textContent = "Enter username";
+      }
+      else{
+          errorName.textContent = "";
+      }
+
+      if(pWord == cpWord){
+          pAlert.textContent = "";
+      }
+      else{
+          pAlert.textContent = "Enter correct password";
+      }
+      if(cpWord == ""){               
+      document.getElementById("myForm").addEventListener('submit', (event) =>{
+          event.preventDefault();
+      }
+      );
+          entercpword.textContent = "Confirm password";
+      }
+      else{
+          entercpword.textContent = "";
+      }
+      
+      if(pWord == ""){
+
+          enterpword.textContent = "Create password";
+      }
+      else{
+          enterpword.textContent = "";
+      }
+
+      if(email == ""){
+
+          console.log("User didn't input email address.");
+      }else if(email.length < 6){
+
+          emailerror.textContent = "Invalid email";
+      }
+      else if(lastFour.includes(".")){
+          emailerror.textContent = "";
+      }
+      else if(extension.includes("@")){
+          emailerror.textContent = "";
+      }
+      else{
+          emailerror.textContent = "Invalid email";
+      }
+      if(phone == ""){
+
+        pNumber.textContent = "Phone number is required";
+      }
+      else if((/[^0-9]/.test(phone))){
+
+          pNumber.textContent = "Invalid number";
+  
+      }else if(phone.length < 11){
+
+          pNumber.textContent = "Incomplete number";
+      }else if(phone.length > 11){
+
+          pNumber.textContent = "Maximum value is 11";
+      }
+      else{
+          pNumber.textContent = "";
+      }
+
+      if(username != "" && pWord == cpWord && phone != ""){
+          window.location.href = "/login.html";
+          pNumber.textContent = "";
+      } else{
+
+          pAlert.textContent = "Enter correct password";
+      }
+    }
+    );
+  }
+    </script>
+  </body>
+</html>

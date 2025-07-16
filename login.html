@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./login.css">
+    <title>Log in</title>
+
+    <style>
+        *{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    }
+
+    h1{
+        text-align: center;
+    }
+
+    .info{
+        border-radius: 10px;
+        padding: 1em 3em;
+    }
+
+
+
+    button{
+        border-radius: 10px;
+        padding: 1em 3em;
+        background-color: rgb(105, 145, 195);
+        transition: background-color 0.25s;
+    }
+
+    button:hover{
+        background-color: rgb(13, 34, 70);
+    }
+
+    .myButton{
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    .content{
+        border: solid black 3px;
+        border-radius: 10px;
+        padding: 1em 3em;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .errors{
+        color: red;
+    }
+    body, html{
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media only screen and (max-width: 1170px) {
+        body, html{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body{    
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+        }
+
+    }
+    </style>
+</head>
+<body>
+    <h1>Log in</h1>
+    <div class="content">
+        <form action="" id="logForm">
+            <input type="text" placeholder="Username" class="info" id="logName"><br><br><br>
+            <p id="errorlogName" class="errors"></p>
+            <input type="text" placeholder="Enter password" class="info" id="logpWord"><br><br><br>
+            <p id="errorlogpWord" class="errors"></p>
+            <button class="myButton" id="myLogin">Log in</button>
+            <p id="errorlogin" class="errors"></p>
+        </form>
+    </div>
+    <script>
+    myLogin.onclick = function(){
+    logName = document.getElementById("logName").value;
+    logPword = document.getElementById("logpWord").value;
+    myLogin = document.getElementById("myLogin");
+    errorlogName = document.getElementById("errorlogName");
+    errorlogpWord = document.getElementById("errorlogpWord");
+    errorlogin = document.getElementById("errorlogin");
+
+    document.getElementById("logForm").addEventListener('submit', (event) => {
+        event.preventDefault();
+    }
+    );
+
+    if(logName == "" && logPword == ""){
+        errorlogin.textContent = "Fill in the required spaces.";
+    }
+    else if(logName == ""){
+        errorlogin.textContent = "Enter username.";
+    }
+    else if(logPword == ""){
+        errorlogin.textContent = "Enter Password.";
+    }
+
+    if(logName != "" && logPword != ""){
+        window.location.href = "/product.html"; 
+    }
+    else{
+        console.log("Login unsuccessful.");
+    }
+}
+    </script>
+
+</body>
+</html>
