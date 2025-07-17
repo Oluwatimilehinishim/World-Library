@@ -1,13 +1,14 @@
 const http = require('http');
 const fs = require('fs');
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const defaultHTML = fs.readFileSync('home.html', 'utf-8');
 const contactusHTML = fs.readFileSync('contact.html', 'utf-8');
 const loginHTML = fs.readFileSync('login.html', 'utf-8');
 const signupHTML = fs.readFileSync('signup.html', 'utf-8');
-const contactHTML = fs.readFileSync(`contact.html`, `utf-8`);
-const feedback = fs.readFileSync(`contactFormData.txt`, `utf-8`);
+const contactHTML = fs.readFileSync('contact.html', 'utf-8');
+const feedback = fs.readFileSync('contactFormData.txt', 'utf-8');
+const productHTML = fs.readFileSync('product.html', 'utf-8');
 
 const indexHTML = `<h1><br/></h1>
     <div class="description">
@@ -17,11 +18,6 @@ const indexHTML = `<h1><br/></h1>
         <br />of literature to your fingertips. <br />There’s a book for
         everyone.
       </h1>
-
-      <!-- <div class="displayPictures">
-        <img src="./images/novel logo.jpg" alt="" />
-        <img src="./images/scripts logo.jpg" alt="" class="displayPicture2" />
-      </div> -->
     </div>
 
     <br /><br /><br /><br />
@@ -43,16 +39,16 @@ const indexHTML = `<h1><br/></h1>
     </div>
     <br /><br />
 
-      <a href="./login.html" target="_blank"
-        ><button type="button" class="free">Log in</button></a
-      >
-    </div>
+      <a href="./login.html" target="_blank">
+        <button type="button" class="free">Log in</button>
+      </a>
+
     <br /><br /><br />
 
     <p class="conclusion">
       World Library is used by over 87 million people and over 15 million teams
       all over the world.
-    </p>`
+    </p>`;
 
 const aboutHTML = `
         <p class="about">ABOUT US</p> 
@@ -82,7 +78,7 @@ const aboutHTML = `
           united by the love for literature and knowledge.</p>
         </div>
     </main>
-`
+`;
 
 function handlePostData(req, callback) {
   let body = '';
@@ -96,41 +92,41 @@ function handlePostData(req, callback) {
   });
 }
 
-	// Create a server
-	const server = http.createServer((req, res) => {
-		if(req.url === "/" || req.url === "/home.html"){
-			res.end(defaultHTML.replace('{{%CONTENT%}}', indexHTML));
-		}
-		else if(req.url === "/about.html"){
-			res.end(defaultHTML.replace('{{%CONTENT%}}', aboutHTML));
-		}
-		else if(req.url === "/contact.html"){
-      res.end(contactHTML);
-		}
-		else if(req.url === "/login.html"){
-			res.end(loginHTML);
-		}
-    else if(req.url === "/product.html"){
-			res.end(productHTML);
-		}
-    else if (req.method === 'POST' && req.url === '/submit-contact'){
+const server = http.createServer((req, res) => {
+  if (req.url === "/" || req.url === "/home.html") {
+    res.end(defaultHTML.replace('{{%CONTENT%}}', indexHTML));
+  }
+  else if (req.url === "/about.html") {
+    res.end(defaultHTML.replace('{{%CONTENT%}}', aboutHTML));
+  }
+  else if (req.url === "/contact.html") {
+    res.end(contactHTML);
+  }
+  else if (req.url === "/login.html") {
+    res.end(loginHTML);
+  }
+  else if (req.url === "/product.html") {
+    res.end(productHTML);
+  }
+  else if (req.method === 'POST' && req.url === '/submit-contact') {
     handlePostData(req, formData => {
       const formDataString = `Surname: ${formData.ssname}\nFirst name: ${formData.ffname}\nEmail: ${formData.emaill}\nPhone number: ${formData.pNumberr}\nComplaint: ${formData.complaint}\n-----\n\n\n`;
-
       fs.appendFile('contactFormData.txt', formDataString, (err) => {
         if (err) {
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end('Error saving form data');
           return;
-        }else
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end(`Form data saved successfully.`);
+        } else {
+          res.writeHead(200, { 'Content-Type': 'text/plain' });
+          res.end(`Form data saved successfully.`);
+        }
       });
     });
-    }else{
-			res.writeHead(404, {"content-Type": "text/plain"});
-      res.end(`Page not found.`);
-		}
+  }
+  else {
+    res.writeHead(404, { "content-Type": "text/plain" });
+    res.end(`Page not found.`);
+  }
 });
 
 server.listen(port, () => {
